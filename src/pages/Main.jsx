@@ -1,7 +1,12 @@
 import React from "react";
+import AddTodo from "../components/AddTodo";
 
 function Main() {
-  return <div>Main</div>;
+  return (
+    <>
+      <AddTodo />
+    </>
+  );
 }
 
 export default Main;

@@ -1,11 +1,16 @@
 import React from "react";
-import AddTodo from "./components/AddTodo";
-import Delete from "./components/Delete";
-import Edit from "./components/Edit";
-import TodoLists from "./components/TodoLists";
+import Router from "./shared/Router";
+import { QueryClientProvider } from "react-query";
+import { QueryClient } from "react-query";
 
-function App() {
-  return <div>App</div>;
-}
+const queryClient = new QueryClient();
+
+const App = () => {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Router />
+    </QueryClientProvider>
+  );
+};
 
 export default App;
