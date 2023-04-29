@@ -1,38 +1,10 @@
 {
   "todos": [
     {
-      "id": 1,
-      "name": "sun",
-      "title": "할일1",
-      "content": "리액트",
-      "isDone": false
-    },
-    {
-      "id": 2,
-      "name": "min",
-      "title": "할일2",
-      "content": "스프링",
-      "isDone": true
-    },
-    {
-      "id": 3,
-      "name": "kim",
-      "title": "할일3",
-      "content": "운동",
-      "isDone": false
-    },
-    {
-      "id": "776824c8-3415-46fe-b165-0cae2f9342bc",
-      "name": "조선아",
-      "title": "밥먹기",
-      "content": "돈까스먹기",
-      "isDone": false
-    },
-    {
-      "id": "2197c798-4934-4461-9695-7bfdf7d043c9",
-      "name": "ㄹㄹ",
-      "title": "산책",
-      "content": "딜검이산책",
+      "id": "2a5845d4-1809-4376-afc2-f5bd2c0bd29b",
+      "name": "김",
+      "title": "운동",
+      "content": "운동하기",
       "isDone": false
     }
   ]

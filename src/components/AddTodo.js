@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom/dist";
 import { getTodos } from "../api/todos";
 import { useQuery } from "react-query";
+import Header from "./Header";
 
 function AddTodo() {
   const { isLoading, isError, data } = useQuery("todos", getTodos);
