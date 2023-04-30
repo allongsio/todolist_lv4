@@ -4,7 +4,7 @@ import axios from "axios";
 //데이터 조회부분
 const getTodos = async () => {
   // const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/todos`);
-  const response = await axios.get("http://localhost:4000/todos");
+  const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/todos`);
 
   // console.log(response.data);
   return response.data;
@@ -25,4 +25,12 @@ const deleteTodo = async (todoId) => {
   return response.data;
 };
 
-export { getTodos, addTodo, deleteTodo };
+//데이터 수정부분
+const editTodo = async (todoId, editedTodo) => {
+  await axios.patch(
+    `${process.env.REACT_APP_SERVER_URL}/todos/${todoId}`,
+    editedTodo
+  );
+};
+
+export { getTodos, addTodo, deleteTodo, editTodo };

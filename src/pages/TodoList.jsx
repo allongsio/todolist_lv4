@@ -1,7 +1,12 @@
 import React from "react";
+import TodoLists from "../components/TodoLists";
 
 function TodoList() {
-  return <div>TodoList</div>;
+  return (
+    <>
+      <TodoLists></TodoLists>
+    </>
+  );
 }
 
 export default TodoList;

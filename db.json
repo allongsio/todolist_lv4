@@ -1,10 +1,17 @@
 {
   "todos": [
     {
-      "id": "2a5845d4-1809-4376-afc2-f5bd2c0bd29b",
+      "id": "1",
       "name": "김",
       "title": "운동",
-      "content": "운동하기",
+      "content": "운동 너무 많이 했어.",
+      "isDone": false
+    },
+    {
+      "id": "2",
+      "name": "정",
+      "title": "공부",
+      "content": "공부 좀 해",
       "isDone": false
     }
   ]
