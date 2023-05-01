@@ -10,7 +10,7 @@ import Header from "../components/Header";
 const Router = () => {
   return (
     <BrowserRouter>
-      <Header></Header>
+      <Header />
       <Routes>
         <Route path='/' element={<Main />} />
         <Route path='/Add' element={<Add />} />

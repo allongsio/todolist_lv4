@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import { getTodos } from "../api/todos";
-import { useQuery } from "react-query";
+import { getTodos, deleteTodo } from "../api/todos";
+import { useQuery, useQueryClient, useMutation } from "react-query";
 import DeleteButtonIcon from "../icons/DeleteButtonIcon";
 import { useNavigate } from "react-router-dom";
 
 function TodoLists() {
+  // React - Query 비동기 데이터 관리
   const { isLoading, isError, data } = useQuery("todos", getTodos);
   if (isLoading) {
     return <p>로딩중입니다...!</p>;
@@ -13,6 +14,7 @@ function TodoLists() {
   if (isError) {
     return <p>오류가 발생하였습니다...!</p>;
   }
+
   return (
     <div>
       <TodoListsTitleArea>
@@ -37,23 +39,28 @@ function TodoLists() {
 export default TodoLists;
 
 const TodoListsTitleArea = styled.div`
-  box-sizing: border-box;
-  padding: 0px;
-  margin: 0px;
-  width: 100%;
   margin: 24px 0px;
 
   div {
-    box-sizing: border-box;
-    padding: 0px;
-    margin: 0px;
-    text-decoration: none;
     font-size: 32px;
   }
 `;
 
 const Todo = ({ id, name, title }) => {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation(deleteTodo, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("todos");
+    },
+  });
+
+  const handleDelete = (event) => {
+    event.stopPropagation();
+    mutation.mutate(id);
+  };
+
   return (
     <TodoWrapper
       onClick={() => {
@@ -62,7 +69,9 @@ const Todo = ({ id, name, title }) => {
     >
       <div id='upper-div'>
         <div id='todo-title-text'>{title}</div>
-        <DeleteButtonIcon />
+        <button onClick={handleDelete}>
+          <DeleteButtonIcon />
+        </button>
       </div>
       <div>
         <div>{name}</div>
@@ -72,12 +81,11 @@ const Todo = ({ id, name, title }) => {
 };
 
 const TodoWrapper = styled.div`
+  position: relative;
   padding: 12px;
   height: 90px;
   border: 1px solid rgb(221, 221, 221);
-  background-color: rgb(255, 255, 255);
   border-radius: 12px;
-  width: 100%;
   margin-bottom: 12px;
   box-sizing: border-box;
 
@@ -86,15 +94,24 @@ const TodoWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    box-sizing: border-box;
-    padding: 0px;
-    margin: 0px;
 
     #todo-title-text {
-      box-sizing: border-box;
-      padding: 0px;
-      margin: 0px;
       font-size: 20px;
     }
+  }
+
+  #delete-button-area {
+    position: absolute;
+    right: 30px;
+    top: 30px;
+  }
+
+  button {
+    border: 1px solid rgb(238, 238, 238);
+    background-color: rgb(255, 255, 255);
+    border-radius: 8px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
   }
 `;

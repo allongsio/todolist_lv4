@@ -8,10 +8,13 @@ import { useMutation } from "react-query";
 import { getTodos, editTodo } from "../api/todos";
 
 function EditComponent() {
-  const { isLoading, isError, data } = useQuery("todos", getTodos);
   const params = useParams();
   const navigate = useNavigate();
+
+  // 수정될 todo 내용 state로  관리
   const [content, setContent] = useState("");
+
+  // 수정될 시에 호출할 api
   const mutation = useMutation(editTodo, {
     onSuccess: () => {
       editTodo(detailData.id, editedTodo);
@@ -19,13 +22,19 @@ function EditComponent() {
     },
   });
 
+  // 비동기 데이터 통신
+  const { isLoading, isError, data } = useQuery("todos", getTodos);
   if (isLoading) {
     return <p>로딩중입니다...!</p>;
   }
   if (isError) {
     return <p>오류가 발생하였습니다...!</p>;
   }
+
+  // 브라우저에 표시될 개별 todo 데이터
   const detailData = data.filter((todo) => todo.id === params.id)[0];
+
+  // 수정된 내용을 포함한 객체 데이터
   const editedTodo = { ...detailData, content };
 
   return (
@@ -81,6 +90,7 @@ const EditWrapper = styled.div`
   #button-area {
     width: 100%;
     gap: 12px;
+
     button {
       align-items: center;
       justify-content: center;

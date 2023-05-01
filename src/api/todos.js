@@ -5,8 +5,6 @@ import axios from "axios";
 const getTodos = async () => {
   // const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/todos`);
   const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/todos`);
-
-  // console.log(response.data);
   return response.data;
 };
 
@@ -18,11 +16,14 @@ const addTodo = async (newTodo) => {
 
 //데이터 삭제부분
 const deleteTodo = async (todoId) => {
-  const response = await axios.delete(`http://localhost:4000/todos/${todoId}`, {
-    method: "DELETE",
-  });
-
-  return response.data;
+  try {
+    const response = await axios.delete(
+      `http://localhost:4000/todos/${todoId}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 //데이터 수정부분

@@ -5,15 +5,18 @@ import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 
 function DetailComponent() {
-  const { isLoading, isError, data } = useQuery("todos", getTodos);
   const params = useParams();
   const navigate = useNavigate();
+  // React - Query 비동기 데이터 관리
+  const { isLoading, isError, data } = useQuery("todos", getTodos);
   if (isLoading) {
     return <p>로딩중입니다...!</p>;
   }
   if (isError) {
     return <p>오류가 발생하였습니다...!</p>;
   }
+
+  //현재 브라우저에 나타날 개별 todo item에 대한 데이터
   const detailData = data.filter((todo) => todo.id === params.id)[0];
 
   return (
@@ -50,7 +53,6 @@ const DetaileComponentWrapper = styled.div`
 
   #id-and-previous {
     display: flex;
-    align-items: center;
     justify-content: space-between;
     margin-bottom: 32px;
 
@@ -81,7 +83,7 @@ const DetaileComponentWrapper = styled.div`
 
   #edit-button {
     border: 1px solid rgb(238, 238, 238);
-    background-color: rgb(255, 255, 255);
+    background-color: white;
     height: 46px;
     border-radius: 8px;
     cursor: pointer;
@@ -94,7 +96,6 @@ const DetaileComponentWrapper = styled.div`
     left: 0px;
     width: 100%;
     border-top: 1px solid rgb(238, 238, 238);
-    background-color: rgb(255, 255, 255);
     margin-top: 20px;
   }
 
