@@ -2,8 +2,7 @@
 
 |기능|URL|Method|request|response|
 |-|-|-|-|-|
-|todo list 전체 조회|/todos|GET||[{id: 'b513d1db-e51d-4c49-9323-12a2f068ff5e', name: 'rrr', title: 'rrr', content: 'rrr', isDone: false}]
-|
+|todo list 전체 조회|/todos|GET||[{id: 'b513d1db-e51d-4c49-9323-12a2f068ff5e', name: 'rrr', title: 'rrr', content: 'rrr', isDone: false}]|
 |todo item 개별 조회|/todos/${todoId}|GET||{id: 'b513d1db-e51d-4c49-9323-12a2f068ff5e', name: 'rrr', title: 'rrr', content: 'rrr', isDone: false}|
 |todo item 추가|/todos|POST||{id: 'b513d1db-e51d-4c49-9323-12a2f068ff5e', name: 'rrr', title: 'rrr', content: 'rrr', isDone: false}|
 |todo item 삭제|/todos/${todoId}|DELETE||{}|
