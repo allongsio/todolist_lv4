@@ -1,5 +1,5 @@
 import React from "react";
-// import { HiHome } from "react-icons/hi";
+import { HiHome } from "react-icons/hi";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
@@ -12,7 +12,9 @@ function Header() {
   return (
     <>
       <TopBox>
-        <Link to='/'>{/* <HiHome /> */}</Link>
+        <Link to='/'>
+          <HiHome />
+        </Link>
         <div>모두의 투두리스트</div>
       </TopBox>
     </>
