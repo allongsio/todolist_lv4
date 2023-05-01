@@ -7,6 +7,7 @@ import styled from "styled-components";
 function DetailComponent() {
   const params = useParams();
   const navigate = useNavigate();
+
   // React - Query 비동기 데이터 관리
   const { isLoading, isError, data } = useQuery("todo", () =>
     getTodo(params.id)

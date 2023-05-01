@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "react-query";
 import { useMutation } from "react-query";
@@ -12,8 +11,7 @@ function EditComponent() {
   const params = useParams();
   const navigate = useNavigate();
 
-  // 수정될 todo 내용 state로  관리
-  // const [content, setContent] = useState("");
+  // 수정될 todo 내용 커스텀 훅으로 사용
   const [content, onChangeContentHandler] = useInput();
 
   // 수정될 시에 호출할 api
