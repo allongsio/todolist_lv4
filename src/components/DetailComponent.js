@@ -1,5 +1,5 @@
 import React from "react";
-import { getTodos } from "../api/todos";
+import { getTodo } from "../api/todos";
 import { useQuery } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
@@ -7,17 +7,17 @@ import styled from "styled-components";
 function DetailComponent() {
   const params = useParams();
   const navigate = useNavigate();
+
   // React - Query 비동기 데이터 관리
-  const { isLoading, isError, data } = useQuery("todos", getTodos);
+  const { isLoading, isError, data } = useQuery("todo", () =>
+    getTodo(params.id)
+  );
   if (isLoading) {
     return <p>로딩중입니다...!</p>;
   }
   if (isError) {
     return <p>오류가 발생하였습니다...!</p>;
   }
-
-  //현재 브라우저에 나타날 개별 todo item에 대한 데이터
-  const detailData = data.filter((todo) => todo.id === params.id)[0];
 
   return (
     <DetaileComponentWrapper>
@@ -27,9 +27,9 @@ function DetailComponent() {
           이전으로
         </div>
       </div>
-      <div id='title'>{detailData.title}</div>
+      <div id='title'>{data.title}</div>
       <div>
-        <div id='content-text'>{detailData.content}</div>
+        <div id='content-text'>{data.content}</div>
         <div>
           <button
             onClick={() => navigate(`/Edit/${params.id}`)}

@@ -1,17 +1,10 @@
 {
   "todos": [
     {
-      "id": "e8333318-ac40-4c9f-8073-f92672e341d3",
-      "name": "",
-      "title": "",
-      "content": "",
-      "isDone": false
-    },
-    {
-      "id": "15da9cd6-541c-4c91-92b7-c0d29948b662",
-      "name": "ㅈㅎ",
-      "title": "ㅇㅇ",
-      "content": "ㅠㅠ",
+      "id": "4a6766fa-6f5e-4dd1-a45a-15989353d9d1",
+      "name": "박",
+      "title": "밥 먹기",
+      "content": "밥 먹기",
       "isDone": false
     }
   ]

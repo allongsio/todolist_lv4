@@ -8,9 +8,15 @@ const getTodos = async () => {
   return response.data;
 };
 
+//개별 데이터 조회부분
+const getTodo = async (todoId) => {
+  const response = await axios.get(`http://localhost:4000/todos/${todoId}`);
+  return response.data;
+};
+
 //데이터 추가부분
 const addTodo = async (newTodo) => {
-  await axios.post("http://localhost:4000/todos", newTodo);
+  const response = await axios.post("http://localhost:4000/todos", newTodo);
   // await axios.post(`${process.env.REACT_APP_SERVER_URL}/todos`, newTodo);
 };
 
@@ -28,10 +34,10 @@ const deleteTodo = async (todoId) => {
 
 //데이터 수정부분
 const editTodo = async (todoId, editedTodo) => {
-  await axios.patch(
+  const response = await axios.patch(
     `${process.env.REACT_APP_SERVER_URL}/todos/${todoId}`,
     editedTodo
   );
 };
 
-export { getTodos, addTodo, deleteTodo, editTodo };
+export { getTodos, getTodo, addTodo, deleteTodo, editTodo };

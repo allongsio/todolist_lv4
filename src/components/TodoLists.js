@@ -58,7 +58,8 @@ const Todo = ({ id, name, title }) => {
 
   const handleDelete = (event) => {
     event.stopPropagation();
-    mutation.mutate(id);
+    const result = window.confirm("정말로 삭제하시겠습니까?");
+    result && mutation.mutate(id);
   };
 
   return (
