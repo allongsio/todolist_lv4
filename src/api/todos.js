@@ -28,6 +28,7 @@ const getTodo = async (todoId) => {
 const addTodo = async (newTodo) => {
   try {
     const response = await axios.post("http://localhost:4000/todos", newTodo);
+
     // await axios.post(`${process.env.REACT_APP_SERVER_URL}/todos`, newTodo);
   } catch (error) {
     console.error(error);
