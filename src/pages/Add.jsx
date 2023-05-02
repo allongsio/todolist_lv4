@@ -27,7 +27,6 @@ function Add() {
   const mutation = useMutation(addTodo, {
     onSuccess: () => {
       queryClient.invalidateQueries("todos");
-      // console.log("성공");
     },
   });
 
@@ -37,16 +36,21 @@ function Add() {
   const navigate = useNavigate(`/TodoList`);
 
   const submitButtonHandler = () => {
-    // 추가하려는 투두
-    const newTodo = {
-      id: uuidv4(),
-      name: name,
-      title: title,
-      content: content,
-      isDone: false,
-    };
+    if (!title || !content || !name) {
+      alert("입력란을 작성하세요");
+    } else {
+      // 추가하려는 투두
+      const newTodo = {
+        id: uuidv4(),
+        name: name,
+        title: title,
+        content: content,
+        isDone: false,
+      };
 
-    mutation.mutate(newTodo);
+      mutation.mutate(newTodo);
+      navigate(`/TodoList`);
+    }
   };
 
   return (
@@ -77,12 +81,10 @@ function Add() {
           onChange={onChangecontentHandler}
         />
         <br />
-        {/* <Button onClick={submitButtonHandler}>추가하기</Button>
-         */}
+
         <Button
           onClick={() => {
             submitButtonHandler();
-            navigate(`/TodoList`);
           }}
         >
           추가하기
@@ -120,5 +122,3 @@ const Button = styled.div`
   margin-top: 30px;
   text-align: center;
 `;
-
-//maxlength는 입력할 수 있는 글자수를 제한한다.

@@ -22,7 +22,7 @@ function TodoLists() {
       </TodoListsTitleArea>
       <div>
         <div>
-          {data.map((item) => (
+          {data?.map((item) => (
             <Todo
               key={item.id}
               id={item.id}
@@ -56,9 +56,9 @@ const Todo = ({ id, name, title }) => {
     },
   });
 
-  const handleDelete = (event) => {
+  const handleDelete = (event, id) => {
     event.stopPropagation();
-    const result = window.confirm("정말로 삭제하시겠습니까?");
+    const result = window.confirm("정말 삭제하시겠습니까?");
     result && mutation.mutate(id);
   };
 
@@ -68,9 +68,9 @@ const Todo = ({ id, name, title }) => {
         navigate(`/Detail/${id}`);
       }}
     >
-      <div id='upper-div'>
-        <div id='todo-title-text'>{title}</div>
-        <button onClick={handleDelete}>
+      <div id="upper-div">
+        <div id="todo-title-text">{title}</div>
+        <button onClick={(event) => handleDelete(event, id)}>
           <DeleteButtonIcon />
         </button>
       </div>
