@@ -56,7 +56,7 @@ const Todo = ({ id, name, title }) => {
     },
   });
 
-  const handleDelete = (event) => {
+  const handleDelete = (event, id) => {
     event.stopPropagation();
     mutation.mutate(id);
   };
@@ -69,7 +69,7 @@ const Todo = ({ id, name, title }) => {
     >
       <div id='upper-div'>
         <div id='todo-title-text'>{title}</div>
-        <button onClick={handleDelete}>
+        <button onClick={(event) => handleDelete(event, id)}>
           <DeleteButtonIcon />
         </button>
       </div>
