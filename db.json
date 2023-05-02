@@ -1,11 +1,3 @@
 {
-  "todos": [
-    {
-      "id": "d612e0b2-b63e-47ab-8c99-8922e23d680a",
-      "name": "rrr",
-      "title": "rrr",
-      "content": "rrr",
-      "isDone": false
-    }
-  ]
+  "todos": []
 }
