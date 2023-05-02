@@ -1,70 +1,76 @@
-# Getting Started with Create React App
+| 기능                 | URL              | Method | request | response                                                                      |
+| -------------------- | ---------------- | ------ | ------- | ----------------------------------------------------------------------------- |
+| todo리스트 전체 조회 | /todos           | GET    |         | [{id:"아이디", name:"이름", title:"제목", content:"내용", isDone:"완수여부"}] |
+| 개별 todo 조회       | /todos/${todoId} | GET    |         | {id:"아이디", name:"이름", title:"제목", content:"내용", isDone:"완수여부"}   |
+| 개별 todo 추가       | /todos           | POST   |         | {id:"아이디", name:"이름", title:"제목", content:"내용", isDone:"완수여부"}   |
+| 개별 todo 수정       | /todos/${todoId} | PATCH  |         | {id:"아이디", name:"이름", title:"제목", content:"내용", isDone:"완수여부"}   |
+| 개별 todo 삭제       | /todos/${todoId} | DELETE |         | {}                                                                            |
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+---
 
-## Available Scripts
+**src > api > todos.js**
 
-In the project directory, you can run:
+```javascript
+//axios 요청이 들어가는 모든 모듈
+import axios from "axios";
 
-### `yarn start`
+//데이터 조회부분
+const getTodos = async () => {
+  // const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/todos`);
+  try {
+    const response = await axios.get(
+      `${process.env.REACT_APP_SERVER_URL}/todos`
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+//개별 데이터 조회부분
+const getTodo = async (todoId) => {
+  try {
+    const response = await axios.get(`http://localhost:4000/todos/${todoId}`);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+//데이터 추가부분
+const addTodo = async (newTodo) => {
+  try {
+    const response = await axios.post("http://localhost:4000/todos", newTodo);
 
-### `yarn test`
+    // await axios.post(`${process.env.REACT_APP_SERVER_URL}/todos`, newTodo);
+  } catch (error) {
+    console.error(error);
+  }
+};
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+//데이터 삭제부분
+const deleteTodo = async (todoId) => {
+  try {
+    const response = await axios.delete(
+      `http://localhost:4000/todos/${todoId}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
 
-### `yarn build`
+//데이터 수정부분
+const editTodo = async (todoId, editedTodo) => {
+  try {
+    const response = await axios.patch(
+      `${process.env.REACT_APP_SERVER_URL}/todos/${todoId}`,
+      editedTodo
+    );
+  } catch (error) {
+    console.error(error);
+  }
+};
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+export { getTodos, addTodo, deleteTodo, editTodo };
+```
