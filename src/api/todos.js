@@ -8,7 +8,6 @@ const getTodos = async () => {
     const response = await axios.get(
       `${process.env.REACT_APP_SERVER_URL}/todos`
     );
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -34,7 +33,7 @@ const addTodo = async (newTodo) => {
       `${process.env.REACT_APP_SERVER_URL}/todos`,
       newTodo
     );
-    console.log(response.data);
+
     // await axios.post(`${process.env.REACT_APP_SERVER_URL}/todos`, newTodo);
   } catch (error) {
     console.error(error);
