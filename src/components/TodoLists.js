@@ -22,7 +22,7 @@ function TodoLists() {
       </TodoListsTitleArea>
       <div>
         <div>
-          {data.map((item) => (
+          {data?.map((item) => (
             <Todo
               key={item.id}
               id={item.id}

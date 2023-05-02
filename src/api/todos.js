@@ -8,6 +8,7 @@ const getTodos = async () => {
     const response = await axios.get(
       `${process.env.REACT_APP_SERVER_URL}/todos`
     );
+    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -17,7 +18,9 @@ const getTodos = async () => {
 //개별 데이터 조회부분
 const getTodo = async (todoId) => {
   try {
-    const response = await axios.get(`http://localhost:4000/todos/${todoId}`);
+    const response = await axios.get(
+      `${process.env.REACT_APP_SERVER_URL}/todos/${todoId}`
+    );
     return response.data;
   } catch (error) {
     console.error(error);
@@ -27,8 +30,11 @@ const getTodo = async (todoId) => {
 //데이터 추가부분
 const addTodo = async (newTodo) => {
   try {
-    const response = await axios.post("http://localhost:4000/todos", newTodo);
-
+    const response = await axios.post(
+      `${process.env.REACT_APP_SERVER_URL}`,
+      newTodo
+    );
+    console.log(response.data);
     // await axios.post(`${process.env.REACT_APP_SERVER_URL}/todos`, newTodo);
   } catch (error) {
     console.error(error);
@@ -39,7 +45,7 @@ const addTodo = async (newTodo) => {
 const deleteTodo = async (todoId) => {
   try {
     const response = await axios.delete(
-      `http://localhost:4000/todos/${todoId}`
+      `${process.env.REACT_APP_SERVER_URL}/todos/${todoId}`
     );
     return response.data;
   } catch (error) {
@@ -59,4 +65,4 @@ const editTodo = async (todoId, editedTodo) => {
   }
 };
 
-export { getTodos, addTodo, deleteTodo, editTodo };
+export { getTodos, addTodo, deleteTodo, editTodo, getTodo };
